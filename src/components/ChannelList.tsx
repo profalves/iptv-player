@@ -6,6 +6,7 @@ interface ChannelListProps {
 }
 
 export const ChannelList = ({ channels, onSelectChannel }: ChannelListProps) => {
+    console.log('channels:', channels);
   return (
     <div className="channel-list">
       <h2>Channels ({channels.length})</h2>
@@ -28,7 +29,7 @@ export const ChannelList = ({ channels, onSelectChannel }: ChannelListProps) => 
             )}
             <div className="channel-info">
               <h3>{channel.name}</h3>
-              {channel.groupTitle && <p className="group-title">{channel.groupTitle}</p>}
+              {channel.groupTitle && <p className="group-title">{channel.tvgId?.split('.')[0]}</p>}
             </div>
           </div>
         ))}

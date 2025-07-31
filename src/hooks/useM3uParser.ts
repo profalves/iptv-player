@@ -1,10 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Channel, ParsedM3U } from '../types';
+
+const STORAGE_KEY = 'iptv_m3u_data';
 
 export const useM3uParser = () => {
   const [parsedData, setParsedData] = useState<ParsedM3U | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Load data from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedData = localStorage.getItem(STORAGE_KEY);
+      if (savedData) {
+        const data = JSON.parse(savedData);
+        setParsedData(data);
+      }
+    } catch (err) {
+      console.error('Failed to load saved M3U data:', err);
+    }
+  }, []);
+
+  // Save data to localStorage whenever parsedData changes
+  useEffect(() => {
+    if (parsedData) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(parsedData));
+      } catch (err) {
+        console.error('Failed to save M3U data:', err);
+      }
+    }
+  }, [parsedData]);
 
   const parseM3uFile = async (file: File) => {
     setLoading(true);
@@ -50,5 +76,14 @@ export const useM3uParser = () => {
     }
   };
 
-  return { parsedData, loading, error, parseM3uFile };
+  const clearSavedData = () => {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      setParsedData(null);
+    } catch (err) {
+      console.error('Failed to clear saved data:', err);
+    }
+  };
+
+  return { parsedData, loading, error, parseM3uFile, clearSavedData };
 };

@@ -29,7 +29,8 @@ export const Player = ({ channel }: PlayerProps) => {
           src={channel.url}
           controls
           width="100%"
-          height="600px"
+          height="100%"
+          autoPlay
           onError={() => setHasError(true)}
         />
       </div>

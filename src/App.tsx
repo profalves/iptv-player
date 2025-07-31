@@ -7,14 +7,19 @@ import './App.css';
 import type { Channel } from './types';
 
 export const App = () => {
-  const { parsedData, loading, error, parseM3uFile } = useM3uParser();
+  const { parsedData, loading, error, parseM3uFile, clearSavedData } = useM3uParser();
   const [selectedChannel, setSelectedChannel] = useState<Channel | null>(null);
 
   return (
     <div className="app">
       <header className="app-header">
         <h1>IPTV Player</h1>
-        <FileUploader onFileUpload={parseM3uFile} loading={loading} />
+        <FileUploader 
+          onFileUpload={parseM3uFile} 
+          loading={loading} 
+          hasData={!!parsedData}
+          onClearData={clearSavedData}
+        />
         {error && <div className="error-message">{error}</div>}
       </header>
 
