@@ -1,0 +1,211 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --background-color: #f5f5f5;
+  --text-color: #333;
+  --error-color: #e74c3c;
+  --border-color: #ddd;
+  --channel-bg: #fff;
+  --channel-hover: #f0f0f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-main {
+  display: flex;
+  flex: 1;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.content-section {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.empty-state {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+}
+
+.file-uploader {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.upload-label {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-label:hover {
+  background-color: #1a6ca8;
+}
+
+.file-uploader input[type='file'] {
+  display: none;
+}
+
+.file-uploader-hint {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.5rem;
+}
+
+.error-message {
+  background-color: var(--error-color);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.channel-list {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.channel-list h2 {
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.channels-container {
+  padding: 0.5rem;
+}
+
+.channel-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--channel-bg);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.channel-item:hover {
+  background-color: var(--channel-hover);
+}
+
+.channel-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+}
+
+.channel-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.channel-info h3 {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.group-title {
+  font-size: 0.7rem;
+  color: #666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-container {
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-container.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  color: #666;
+}
+
+.player-title {
+  padding: 0.5rem 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+}
+
+.player-wrapper {
+  flex: 1;
+  height: 100vh;
+}
+
+
+.player-error {
+  padding: 0.5rem;
+  background-color: var(--error-color);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    order: -1;
+  }
+}
