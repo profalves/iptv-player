@@ -23,7 +23,7 @@ export const Player = ({ channel }: PlayerProps) => {
 
   return (
     <div className="player-container">
-      <h2 className="player-title">{channel.name}</h2>
+      <h2 className="player-title">{channel.tvgId}</h2>
       <div className="player-wrapper">
         <ReactPlayer
           src={channel.url}

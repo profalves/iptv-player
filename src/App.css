@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #3498db;
-  --secondary-color: #2980b9;
-  --background-color: #f5f5f5;
+  --primary-color: #008080;
+  --secondary-color: #1a6ca8;
+  --background-color: #666;
   --text-color: #333;
   --error-color: #e74c3c;
   --border-color: #ddd;
-  --channel-bg: #fff;
+  --channel-bg: #ccc;
   --channel-hover: #f0f0f0;
 }
 
@@ -35,12 +35,16 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.app-header h1 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
 .app-main {
   display: flex;
   flex: 1;
   padding: 1rem;
   gap: 1rem;
-  height: calc(100vh - 120px); /* Subtract header height */
   overflow: hidden;
 }
 
@@ -48,6 +52,7 @@ body {
   flex: 3;
   display: flex;
   flex-direction: column;
+  height: 80vh;
 }
 
 .sidebar {
@@ -56,7 +61,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  height: 100%;
+  height: 80vh;
   display: flex;
   flex-direction: column;
 }
@@ -72,6 +77,11 @@ body {
 .file-uploader {
   margin: 1rem 0;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .upload-label {
@@ -85,7 +95,7 @@ body {
 }
 
 .upload-label:hover {
-  background-color: #1a6ca8;
+  background-color: #2980b9;
 }
 
 .file-uploader input[type='file'] {
@@ -96,10 +106,10 @@ body {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.8);
   margin-top: 0.5rem;
+  width: 100%;
 }
 
 .clear-data-button {
-  margin-left: 1rem;
   padding: 0.5rem 1rem;
   background-color: var(--error-color);
   color: white;
@@ -143,6 +153,7 @@ body {
   padding: 0.5rem;
   overflow-y: auto;
   flex: 1;
+  background-color: #f5f5f5;
 }
 
 .channel-item {
@@ -188,6 +199,105 @@ body {
   text-overflow: ellipsis;
 }
 
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--channel-bg);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.category-item:hover {
+  background-color: var(--channel-hover);
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.category-info h3 {
+  font-size: 1rem;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.channel-count {
+  font-size: 0.8rem;
+  color: #666;
+  margin: 0.2rem 0 0 0;
+}
+
+.category-arrow {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  flex-shrink: 0;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.category-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.search-container {
+  padding: 1rem;
+  background-color: #f5f5f5;
+  flex-shrink: 0;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
 .player-container {
   background-color: black;
   color: white;
@@ -228,10 +338,61 @@ body {
 
 @media (max-width: 768px) {
   .app-main {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .sidebar {
     order: -1;
+  }
+
+  .app-header {
+    padding: 0.5rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .file-uploader {
+    margin: 0.5rem 0;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .upload-label {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .clear-data-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .file-uploader-hint {
+    font-size: 0.75rem;
+    margin-top: 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .file-uploader {
+    margin: 0.3rem 0;
+  }
+
+  .upload-label,
+  .clear-data-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .error-message {
+    font-size: 0.8rem;
+    padding: 0.4rem;
   }
 }
